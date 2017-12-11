@@ -1,0 +1,135 @@
+ <% include partials/headerT %>
+<style>
+.btn-default {
+color: white;
+background-color: black;
+width: 100px;
+}
+</style>
+<%if(currentUser.isFl){ %>
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-4">
+        <h1><%= user.firstName + ' ' + user.lastName %></h1>
+        <a href="/postjob"><button type="button" class="btn btn-default">post a job</button></a>
+      <div class="container">           
+  <img src="/uploads/employer.png" class="img-rounded" width="250" height="236"> 
+
+        <h3>Phone:<%= user.phone%></h3>
+        <h4>email:<%= user.email%></h4>
+        <h3>Country:<%= user.country%></h3>
+
+
+</div>
+
+    </div>
+
+
+    <div class="col-md-8">
+<h3> <%= user.username%>'s Available Tasks</h3>
+        <% display.forEach(function(job){ %>
+<div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                  <h2><a href = "/employer/<%= job._id%>"> <%= job.name %> </a></h2>
+
+                   <div class="caption">
+                       <h4><b>Price Range(₦):</b><%= job.price%></h4>
+                   </div>
+                   
+                   <p>
+                   <a href = "/employer/<%= job._id%>" class =  "btn btn-primary"> More info </a>
+                   </p>
+                   
+                </div>
+            </div>
+
+<% }) %>
+    </div>
+
+
+
+
+</div>
+
+</div>
+
+<%} else {%>
+
+
+
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-4">
+        <h1><%= user.firstName + ' ' + user.lastName %></h1>
+      <div class="container">           
+  <img src="/uploads/employer.png" class="img-rounded" width="250" height="236"> 
+
+        <h3>Phone:<%= user.phone%></h3>
+        <h4>email:<%= user.email%></h4>
+        <h3>Country:<%= user.country%></h3>
+
+
+</div>
+
+    </div>
+
+
+    <div class="col-md-8">
+<h3> <%= user.username%>'s Available Tasks</h3>
+        <% display.forEach(function(job){ %>
+<div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                  <h2><a href = "/employer/<%= job._id%>"> <%= job.name %> </a></h2>
+
+                   <div class="caption">
+                       <h4><b>Price Range(₦):</b><%= job.price%></h4>
+                   </div>
+                   
+                   <p>
+                   <a href = "/employer/<%= job._id%>" class =  "btn btn-primary"> More info </a>
+                   </p>
+                   
+                </div>
+            </div>
+
+<% }) %>
+    </div>
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,270 @@
+ <% include partials/headerT %>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<style>
+.form-control {
+    word-break: keep-all;
+}
+
+
+.w3-btn {
+width: 170px;
+}
+
+.btn {
+width: 170px;
+       margin-bottom: 10px;
+       margin-left: 10px;
+}
+
+.w3-circle {
+border-radius: 50%;
+width: 90px;
+}
+
+</style>
+
+<%if(currentUser.isFl){ %>
+<div class="container">
+
+<div class="w3-card-4">
+
+<header class="w3-container w3-black">
+  <h1><b>
+<%= jobs.name%>
+</b></h1>
+</header>
+
+<div class="w3-container">
+ <p>
+<p><%= jobs.description %></p>
+
+<p><b>Category:</b><button class="w3-btn w3-black w3-round-tiny w3-disabled"><%=jobs.category%></button><p>
+
+<p><b>Skills Needed</b><%=jobs.skills%></p>
+
+<p><b>price(N):</b><%=jobs.price%></p>
+</p>
+</div>
+
+
+
+</div>
+
+
+
+
+
+<br>
+<div class="w3-container w3-black">
+  <h1>Freelancer currently bidding for this Task</h1>
+</div>
+<br>
+<br>
+<% bid.forEach(function(bids){ %>
+<div class="w3-card">
+<div class="w3-container"> 
+<div class="row">
+
+<div class="col-sm-4">
+<a href="/Edashboard/<%=bids.fl.id%>"<h2> <%= bids.username %> </h2></a>
+<br>
+  <img src="/uploads/Manager.jpg" class="img-rounded" width="100" height="150"> 
+ <br>
+ <br>
+
+<p><b>skills:</b><%=bids.skills%></p>
+ </div>
+
+
+<div class="col-sm-4">
+<p><%=bids.info%></p>
+</div>
+
+<div class="col-sm-4">
+<h1><b>₦<%= bids.price%></b></h1>
+<p><b>Reputation:</b><button class="w3-button w3-circle w3-teal"><%=votes%>/10</button></p>
+ 
+</div>
+
+
+
+</div>
+</div>
+</div>
+<hr>
+    <% }); %>
+
+
+
+</div>
+
+<%} else {%>
+
+
+<div class="container">
+
+<div class="w3-card-4">
+
+<header class="w3-container w3-black">
+  <h1><b>
+<%= jobs.name%>
+</b></h1>
+</header>
+
+<div class="w3-container">
+ <p>
+<p><%= jobs.description %></p>
+
+<p><b>Category:</b><button class="w3-btn w3-black w3-round-tiny w3-disabled"><%=jobs.category%></button><p>
+
+<p><b>Skills Needed</b><%=jobs.skills%></p>
+
+<p><b>price(N):</b><%=jobs.price%></p>
+</p>
+</div>
+
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Bid Now</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+
+        <div class="modal-body">
+             <form action="/bid" method="POST">
+
+                <label for="username">Username</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder ="Enter your username as shown on the nav bar">
+                </div>
+
+               
+
+                <label for="price">your Price(N:)</label>
+                 <div class="form-group">
+                    <input class="form-control" type="number" name="price">
+                </div>
+                    
+    
+                 <label for="skils">Your Skills</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name="skills" > 
+                </div>
+
+                 <label for="info">Additional info</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name="info"> 
+                </div>
+     
+      <label for="task">Task</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name="task" value = <%= jobs.name %> readonly> 
+                </div>
+
+ <label for="Task id">Task Id</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name = "id" value= <%=jobs.id%> readonly>
+                </div>
+
+        <label for="email">Employer's E-mail</label>
+                 <div class="form-group">
+                    <input class="form-control" type="email" name="email" value = <%= jobs.freelancer.email%> readonly> 
+                </div>
+
+
+
+                <div class="form-group">
+                     <button id="demo" onClick="myFunction()" class="btn btn-lg btn-success btn-block">Place Bid</button>
+                </div>
+            </form>
+</div>
+        <div class="modal-footer">
+          <a href = "/employer/<%=jobs._id %>/order"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></a>
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+  
+
+
+
+</div>
+
+
+
+
+
+<br>
+<div class="w3-container w3-black">
+  <h1>Freelancer currently bidding for this Task</h1>
+</div>
+<br>
+<br>
+<% bid.forEach(function(bids){ %>
+<div class="w3-card">
+<div class="w3-container"> 
+<div class="row">
+
+<div class="col-sm-4">
+<a href="/Edashboard/<%=bids.fl.id%>"<h2> <%= bids.username %> </h2></a>
+<br>
+  <img src="/uploads/Manager.jpg" class="img-rounded" width="100" height="150"> 
+ <br>
+ <br>
+
+<p><b>skills:</b><%=bids.skills%></p>
+ </div>
+
+
+<div class="col-sm-4">
+<p><%=bids.info%></p>
+</div>
+
+<div class="col-sm-4">
+<h1><b>₦<%= bids.price%></b></h1>
+<p><b>Reputation:</b><button class="w3-button w3-circle w3-teal"><%=votes%>/10</button></p>
+ 
+</div>
+
+
+
+</div>
+</div>
+</div>
+<hr>
+    <% }); %>
+
+
+
+</div>
+
+
+
+<%}%>
+
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Done";
+}
+</script>

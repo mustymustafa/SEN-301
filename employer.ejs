@@ -1,0 +1,58 @@
+<% include partials/headerT %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+.w3-btn {width:170px;}
+
+.container-fluid.jumbotron {
+background-color: darkcyan;
+}
+
+.row {
+background-color: floralwhite;
+}
+</style>
+<div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To OutSourceNg</h1>
+             <p>OutSource Variety of Jobs</p>
+         </div>
+     </header>
+     
+ <% jobs.forEach(function(job){ %>
+<div class="w3-card">
+<div class="w3-container"> 
+<div class="row">
+
+<div class="col-sm-9">
+ <h2><a href = "/employer/<%= job._id%>"> <%= job.name %> </a></h2>
+  <p class="description"><%=job.description%>.</p>  
+<p><a href = "/employer/<%= job._id%>"> More info </a></p>
+
+<p><b>Category:</b><button class="w3-btn w3-black w3-round-tiny"><%=job.category%></button><p>
+
+<p><b>skills:</b><%=job.skills%></p>
+ 
+<p>
+ <em>  <a href ="/fldashboard/<%=job.freelancer.id%>" > Rendered by <%= job.freelancer.username%></a></em>
+ </p>
+</div>
+
+<div class="col-sm-3">
+<h1><b>₦<%= job.price%></b></h1>
+</div>
+
+
+
+</div>
+</div>
+</div>
+<hr>
+    <% }); %>
+
+
+
+</div>
+

@@ -1,0 +1,232 @@
+ <% include partials/headerT %>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+button {
+background-color: darkgreen;
+margin: 8px 0;
+width: 70%;
+}
+
+.w3-circle {
+border-radius: 50%;
+width: 90px; 
+background-color:#31b0d5;
+}
+</style>
+
+<div class="container-fluid">
+<div class="row content">
+<%if(currentUser.isFl){%>
+<div class="col-sm-3">
+    <h1><%= user.firstName + ' ' + user.lastName %></h1>
+
+
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hire Me</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+         <p> Hi <%=user.username%>, I have awarded this task to you<p>
+
+  
+
+ <form action="/charge" method="POST">
+
+        <script
+
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+
+          data-key="pk_test_570bfsi2mcKKpH5iTyHhFccu"
+
+          data-amount="2500"
+
+          data-name="outsourceNg"
+
+        data-description="get more for less"
+
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+
+          data-locale="auto">
+
+        </script>
+
+        <script>
+
+          // Hide default stripe button
+
+          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+
+        </script>
+
+        <button type="submit" class="btn btn-outline-dark text-white btn-lg">pay securely</button>
+
+      </form>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+
+<div class="container">           
+  <img src="/uploads/Manager.jpg" class="img-rounded" width="250" height="236"> 
+
+        <h3>Phone:<%= user.phone%></h3>
+        <h4>email:<%= user.email%></h4>
+        <h3>Country:<%= user.country%></h3>  
+        </div>
+</div>
+
+
+
+<div class="col-sm-9">
+<b>About <%=user.username%></b>
+<p><%=user.about%></p>
+
+<p><b>Category</b></p>
+<p><%=user.category%></p>
+
+<p><b>Skills</b></p>
+<p><%=user.skills%></p>
+
+<p>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Rate Me!</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h4 class="modal-title">Rate over 10</h4>
+        </div>
+
+        <div class="modal-body">
+             <form action="/ratings" method="POST">
+                 <div class="form-group">
+                    <input class="form-control" type="Number" name="rating" required min='0' max='10'>
+                </div>
+
+
+                <div class="form-group">
+                     <button id="demo" onClick="myFunction()" class="btn btn-lg btn-success btn-block">Rate</button>
+                </div>
+            </form>
+</div>
+        <div class="modal-footer">
+          <a href = "/Edashboard/<%=user._id %>/order"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></a>
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+  
+
+</p>
+
+<p>
+<p><b>Reputation:</b><button class="w3-button w3-circle w3-teal"><%=votes%>/10</button></p>
+</p>
+</div>
+
+</div>
+</div>
+
+<% } else { %>
+
+<div class="container-fluid">
+<div class="row content">
+
+<div class="col-sm-3">
+    <h1><%= user.firstName + ' ' + user.lastName %></h1>
+<div class="container">           
+  <img src="/uploads/Manager.jpg" class="img-rounded" width="250" height="236"> 
+
+        <h3>Phone:<%= user.phone%></h3>
+        <h4>email:<%= user.email%></h4>
+        <h3>Country:<%= user.country%></h3>  
+        </div>
+</div>
+
+
+
+<div class="col-sm-9">
+<b>About <%=user.username%></b>
+<p><%=user.about%></p>
+
+<p><b>Category</b></p>
+<p><%=user.category%></p>
+
+<p><b>Skills</b></p>
+<p><%=user.skills%></p>
+
+
+<p>
+<p><b>Reputation:</b><button class="w3-button w3-circle w3-teal"><%=votes%>/10</button></p>
+</p>
+
+</div>
+
+
+</div>
+</div>
+
+<% } %>
+
+
+        
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Done";
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

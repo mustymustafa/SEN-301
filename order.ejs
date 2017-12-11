@@ -1,0 +1,57 @@
+
+
+ <% include partials/header%>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Request For This Service</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/order" method="POST">
+     
+                <label for="Fname">First Name</label>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="Fname" placeholder="First Name" required>
+                </div>
+                
+                <label for="Lname">Last Name</label>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="Lname" placeholder="Last Name">
+                </div>
+        
+                <label for="state">State</label>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="state" placeholder="Lagos" required>
+                </div>
+
+                <label for="Addr">Address</label>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="addr" placeholder="Address">
+                </div>
+                
+                <label for="phone">Mobile number</label>
+                 <div class="form-group">
+                    <input class="form-control" type="text" name="phone" placeholder="08000000000" required>
+                </div>
+
+                <label for="email">E-mail</label>
+                 <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="abc@gmail.com" required>
+                </div>
+                    
+    
+                 <label for="email">Freelancer E-mail</label>
+                 <div class="form-group">
+                    <input class="form-control" type="email" name="Flemail" value = <%= order.freelancer.email%> readonly> 
+                </div>
+
+     
+        
+
+
+                <div class="form-group">
+                    <button class="btn btn-lg btn-success btn-block">Request</button>
+                </div>
+            </form>
+            <a href="/employer">Go Back</a>
+        </div>
+    </div>
+</div>
